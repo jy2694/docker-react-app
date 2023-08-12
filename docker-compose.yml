@@ -1,0 +1,15 @@
+version: "3"
+services:
+  builder:
+    image: node:alpine
+    volumes:
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+    command: "npm install; npm run build"
+  nginx:
+    image: nginx
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 8080:80
